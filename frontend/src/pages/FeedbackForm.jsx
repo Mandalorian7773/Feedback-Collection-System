@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import StarRating from '../components/StarRating'
 
 const FeedbackForm = () => {
@@ -27,7 +28,7 @@ const FeedbackForm = () => {
         rating: parseInt(formData.rating)
       }
       console.log('Submitting data:', submitData)
-      const response = await fetch('https://feedback-collection-system-3m5x.onrender.com', {
+      const response = await fetch('https://feedback-collection-system-3m5x.onrender.com/feedback', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -59,9 +60,9 @@ const FeedbackForm = () => {
     <div className="max-w-2xl mx-auto mt-12 p-6 bg-white shadow-lg rounded-lg">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-gray-800">Feedback Form</h1>
-        <a href="/admin" className="text-sm text-blue-600 hover:text-blue-800 underline">
+        <Link to="/admin" className="text-sm text-blue-600 hover:text-blue-800 underline">
           Admin Login
-        </a>
+        </Link>
       </div>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
