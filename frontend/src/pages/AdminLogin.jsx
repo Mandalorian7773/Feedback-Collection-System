@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const AdminLogin = () => {
   const [credentials, setCredentials] = useState({email: '', password: ''})
@@ -39,6 +39,14 @@ const AdminLogin = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-6">
+        <div className="flex justify-between items-center mb-6">
+          <Link 
+            to="/" 
+            className="text-sm text-gray-600 hover:text-gray-800 underline"
+          >
+            ← Back to Feedback Form
+          </Link>
+        </div>
         <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">Admin Login</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
