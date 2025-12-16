@@ -6,7 +6,7 @@ const FeedbackForm = () => {
     name: '',
     email: '',
     phone: '',
-    rating: 0,
+    rating: 1,
     feedback: ''
   })
   const [message, setMessage] = useState('')
