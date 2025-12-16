@@ -19,7 +19,7 @@ const AdminLogin = () => {
     const authToken = btoa(`${credentials.email}:${credentials.password}`)
     
     try {
-      const response = await fetch('http://localhost:3000/admin/feedback?page=1&limit=1', {
+      const response = await fetch('https://feedback-collection-system-3m5x.onrender.com/admin/feedback?page=1&limit=1', {
         headers: {
           'Authorization': `Basic ${authToken}`
         }

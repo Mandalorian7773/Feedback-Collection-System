@@ -27,7 +27,7 @@ const FeedbackForm = () => {
         rating: parseInt(formData.rating)
       }
       console.log('Submitting data:', submitData)
-      const response = await fetch('http://localhost:3000/feedback', {
+      const response = await fetch('https://feedback-collection-system-3m5x.onrender.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
