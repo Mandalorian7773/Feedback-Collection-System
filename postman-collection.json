@@ -1,0 +1,107 @@
+{
+  "info": {
+    "name": "Feedback Collection System - PostgreSQL",
+    "description": "API collection for the Feedback Collection System with PostgreSQL database",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Submit Feedback",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"1234567890\",\n  \"rating\": 5,\n  \"feedback\": \"Great service!\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/feedback",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "feedback"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Admin Feedback (Paginated)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/admin/feedback?page=1&limit=10",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "admin",
+            "feedback"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        },
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "admin@company.com",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "admin123",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Test PostgreSQL Connection",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"PostgreSQL Test\",\n  \"email\": \"postgres@example.com\",\n  \"phone\": \"9876543210\",\n  \"rating\": 4,\n  \"feedback\": \"Testing PostgreSQL integration!\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/feedback",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "feedback"
+          ]
+        }
+      }
+    }
+  ]
+}
