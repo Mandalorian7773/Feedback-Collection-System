@@ -42,4 +42,17 @@ const getAdminFeedback = async (req, res) => {
   }
 }
 
-module.exports = { createFeedback, getAdminFeedback }
+
+const deleteFeedback = async (req, res) => {
+  try {
+    const feedbackId = req.body.id;
+    const feedback = prisma.feedback.delete({
+      id : feedbackId
+    })
+    res.json(feedback)
+  } catch(error) {
+    res.status(500).json({ error: 'Failed to delete feedback' })
+  }
+}
+
+module.exports = { createFeedback, getAdminFeedback, deleteFeedback }

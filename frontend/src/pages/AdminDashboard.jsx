@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -6,6 +7,7 @@ const AdminDashboard = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [total, setTotal] = useState(0)
+  const [feedbackId, setFeedbackId] = useState(0);
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
   const limit = 10
@@ -41,6 +43,23 @@ const AdminDashboard = () => {
       console.error('Error fetching feedback:', error)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleDeleteFeedback = async () => {
+   
+    try {
+      const response = await axios.delete(`https://feedback-collection-system-3m5x.onrender.com/admin/feedback`, {
+        body: {
+          'id' : `${feedbackId}`,
+        }
+      })
+
+      if(response.ok){
+        console.log("Feedback deleted succesfully")
+      }
+    } catch (error) {
+      console.log('Error Deleting feedback', error)
     }
   }
 
@@ -160,6 +179,12 @@ const AdminDashboard = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {formatDate(item.createdAt)}
+                      </td>
+                      <td>
+                        <button className='px-6 py-3 bg-red-300' value={item.id} onClick={() => {
+                          setFeedbackId(item.id)
+                          .then(handleDeleteFeedback)
+                        }}>Delete Feedback</button>
                       </td>
                     </tr>
                   ))
