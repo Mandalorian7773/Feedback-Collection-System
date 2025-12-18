@@ -47,7 +47,9 @@ const deleteFeedback = async (req, res) => {
   try {
     const feedbackId = req.body.id;
     const feedback = prisma.feedback.delete({
-      id : feedbackId
+      where:{
+        id: feedbackId
+      }
     })
     res.json(feedback)
   } catch(error) {

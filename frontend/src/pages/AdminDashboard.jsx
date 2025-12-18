@@ -25,7 +25,7 @@ const AdminDashboard = () => {
     const authToken = localStorage.getItem('authToken')
     setLoading(true)
     try {
-      const response = await fetch(`https://feedback-collection-system-3m5x.onrender.com/admin/feedback?page=${currentPage}&limit=${limit}`, {
+      const response = await fetch(`http://localhost:3000/admin/feedback?page=${currentPage}&limit=${limit}`, {
         headers: {
           'Authorization': `Basic ${authToken}`
         }
@@ -49,7 +49,7 @@ const AdminDashboard = () => {
   const handleDeleteFeedback = async () => {
    
     try {
-      const response = await axios.delete(`https://feedback-collection-system-3m5x.onrender.com/admin/feedback`, {
+      const response = await axios.delete(`http://localhost:3000/admin/feedback`, {
         body: {
           'id' : `${feedbackId}`,
         }
@@ -183,7 +183,7 @@ const AdminDashboard = () => {
                       <td>
                         <button className='px-6 py-3 bg-red-300' value={item.id} onClick={() => {
                           setFeedbackId(item.id)
-                          .then(handleDeleteFeedback)
+                          handleDeleteFeedback()
                         }}>Delete Feedback</button>
                       </td>
                     </tr>
