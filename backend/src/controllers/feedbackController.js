@@ -46,7 +46,7 @@ const getAdminFeedback = async (req, res) => {
 const deleteFeedback = async (req, res) => {
   try {
     const feedbackId = req.body.id;
-    const feedback = prisma.feedback.delete({
+    const feedback = await prisma.feedback.delete({
       where:{
         id: feedbackId
       }

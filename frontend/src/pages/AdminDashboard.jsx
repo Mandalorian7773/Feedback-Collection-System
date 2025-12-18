@@ -46,22 +46,29 @@ const AdminDashboard = () => {
     }
   }
 
-  const handleDeleteFeedback = async () => {
-   
-    try {
-      const response = await axios.delete(`http://localhost:3000/admin/feedback`, {
-        body: {
-          'id' : `${feedbackId}`,
-        }
-      })
+ const handleDeleteFeedback = async (id) => {
+  const authToken = localStorage.getItem('authToken')
 
-      if(response.ok){
-        console.log("Feedback deleted succesfully")
+  try {
+    await axios.delete('http://localhost:3000/admin/feedback', {
+      headers: {
+        Authorization: `Basic ${authToken}`
+      },
+      data: {
+        id: id
       }
-    } catch (error) {
-      console.log('Error Deleting feedback', error)
-    }
+    })
+
+
+    setFeedback(prev => prev.filter(item => item.id !== id))
+    setTotal(prev => prev - 1)
+
+    console.log('Feedback deleted successfully')
+  } catch (error) {
+    console.error('Error deleting feedback', error)
   }
+}
+
 
   const handleLogout = () => {
     localStorage.removeItem('authToken')
@@ -182,8 +189,7 @@ const AdminDashboard = () => {
                       </td>
                       <td>
                         <button className='px-6 py-3 bg-red-300' value={item.id} onClick={() => {
-                          setFeedbackId(item.id)
-                          handleDeleteFeedback()
+                          handleDeleteFeedback(item.id)
                         }}>Delete Feedback</button>
                       </td>
                     </tr>
